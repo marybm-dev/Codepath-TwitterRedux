@@ -105,7 +105,8 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oG-Pj-B1i">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="50000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oG-Pj-B1i">
+                                                    <frame key="frameInset" minX="308" minY="120" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -122,7 +123,8 @@
                                                         <action selector="onRetweetButton:" destination="9k4-T6-6xG" eventType="touchUpInside" id="F9Q-Xl-fcd"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ro-am-0vP">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ro-am-0vP">
+                                                    <frame key="frameInset" minX="279" minY="116" width="25" height="25"/>
                                                     <state key="normal" image="like"/>
                                                     <connections>
                                                         <action selector="onLikeButton:" destination="9k4-T6-6xG" eventType="touchUpInside" id="kiC-Rh-xAJ"/>
@@ -131,11 +133,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wzy-xA-EjB" firstAttribute="top" secondItem="gJc-4O-Aas" secondAttribute="bottom" constant="4" id="1FP-0r-XfQ"/>
-                                                <constraint firstItem="U6m-GH-xMj" firstAttribute="leading" secondItem="Mol-mv-eeG" secondAttribute="trailing" constant="37" id="5AL-Si-guh"/>
+                                                <constraint firstItem="U6m-GH-xMj" firstAttribute="leading" secondItem="Mol-mv-eeG" secondAttribute="trailing" constant="30" id="5AL-Si-guh"/>
                                                 <constraint firstItem="Ibp-f3-odT" firstAttribute="centerY" secondItem="p56-2a-Hgn" secondAttribute="centerY" id="76B-BV-KP7"/>
                                                 <constraint firstItem="yta-Cu-1gU" firstAttribute="leading" secondItem="CLm-Os-Tg3" secondAttribute="leading" constant="17" id="Cx1-O9-CPP"/>
                                                 <constraint firstItem="wzy-xA-EjB" firstAttribute="leading" secondItem="Mol-mv-eeG" secondAttribute="leading" id="Eis-7v-PSJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="CHe-vt-c1v" secondAttribute="trailing" constant="10" id="IF8-p9-Gp6"/>
+                                                <constraint firstItem="0Ro-am-0vP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="ojY-rn-fP2" secondAttribute="trailing" constant="50" id="IbO-IA-emk"/>
                                                 <constraint firstItem="U6m-GH-xMj" firstAttribute="centerY" secondItem="ojY-rn-fP2" secondAttribute="centerY" id="Mih-8C-orA"/>
                                                 <constraint firstItem="gJc-4O-Aas" firstAttribute="top" secondItem="yta-Cu-1gU" secondAttribute="top" id="O4p-Yz-f1s"/>
                                                 <constraint firstItem="0Ro-am-0vP" firstAttribute="top" secondItem="wzy-xA-EjB" secondAttribute="bottom" constant="8" symbolic="YES" id="OLr-7I-QEf"/>
@@ -147,7 +150,7 @@
                                                 <constraint firstItem="p56-2a-Hgn" firstAttribute="leading" secondItem="CLm-Os-Tg3" secondAttribute="leading" constant="67" id="buE-tu-IIe"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="wzy-xA-EjB" secondAttribute="trailing" id="idk-x8-V7v"/>
                                                 <constraint firstItem="ojY-rn-fP2" firstAttribute="leading" secondItem="U6m-GH-xMj" secondAttribute="trailing" constant="3" id="jNY-kq-4RD"/>
-                                                <constraint firstItem="Wpu-6z-r9N" firstAttribute="leading" secondItem="gJc-4O-Aas" secondAttribute="trailing" constant="13" id="lUN-yN-9Tv"/>
+                                                <constraint firstItem="Wpu-6z-r9N" firstAttribute="leading" secondItem="gJc-4O-Aas" secondAttribute="trailing" constant="5" id="lUN-yN-9Tv"/>
                                                 <constraint firstItem="CHe-vt-c1v" firstAttribute="baseline" secondItem="Wpu-6z-r9N" secondAttribute="baseline" id="lUU-ik-3wm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="6oG-Pj-B1i" secondAttribute="trailing" constant="59" id="mMh-cI-f8k"/>
                                                 <constraint firstItem="yta-Cu-1gU" firstAttribute="top" secondItem="p56-2a-Hgn" secondAttribute="bottom" constant="5" id="maP-WE-i3O"/>
