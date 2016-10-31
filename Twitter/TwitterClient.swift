@@ -20,7 +20,6 @@ class TwitterClient: BDBOAuth1SessionManager {
         loginSuccess = success
         loginFailure = failure
         
-        
         deauthorize()
         fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterdemo://oath"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
             
@@ -34,6 +33,25 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             }, failure: { (error: Error?) in
                 self.loginFailure!(error!)
+        })
+    }
+    
+    func handleOpenUrl(url: URL) {
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken: BDBOAuth1Credential?) in
+            
+            self.currentAccount(success: { (user: User) in
+                User.currentUser = user
+                self.loginSuccess?()
+                
+                }, failure: { (error: Error) in
+                    print("error: \(error.localizedDescription)")
+                    self.loginFailure?(error)
+            })
+            
+            }, failure: { (error: Error?) in
+                print("error: \(error?.localizedDescription)")
+                self.loginFailure?(error!)
         })
     }
     
@@ -51,34 +69,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func currentAccount() {
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+
             let userDictionary = response as! NSDictionary
-            
             let user = User(dictionary: userDictionary)
             
-            print("name: \(user.name)")
-            print("screenname: \(user.screenname)")
-            print("profile url: \(user.profileURL)")
-            print("description: \(user.tagline)")
+            success(user)
             
-            }, failure: { (task: URLSessionTask?, error: Error) in
-                print("error: \(error.localizedDescription)")
-        })
-    }
-    
-    func handleOpenUrl(url: URL) {
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken: BDBOAuth1Credential?) in
-
-            print("I got the access token!")
-            
-            self.loginSuccess?()
-            
-            }, failure: { (error: Error?) in
-                print("error: \(error?.localizedDescription)")
-                self.loginFailure?(error!)
+        }, failure: { (task: URLSessionTask?, error: Error) in
+            failure(error)
         })
     }
     
