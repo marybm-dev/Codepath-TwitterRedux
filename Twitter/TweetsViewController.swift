@@ -51,6 +51,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "ShowTweetDetail" {
+            let tweet = sender as! Tweet
+            let tweetDetailVC = segue.destination as! TweetDetailViewController
+            
+            tweetDetailVC.tweet = tweet
+        }
+        
     }
  
     // MARK: - UITableViewDataSource
@@ -72,6 +79,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         return 150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tweet = tweets[indexPath.row]
+        
+       self.performSegue(withIdentifier: "ShowTweetDetail", sender: tweet)
+    }
     // Mark: - Refresh control
     func refreshControlAction(refreshControl: UIRefreshControl) {
         self.fetchData(shouldRefresh: true)
