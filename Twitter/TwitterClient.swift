@@ -100,4 +100,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func favoriteTweet(id: Int, success: @escaping (Bool) -> (), failure: @escaping (Error) -> ()) {
+        
+        let parameters: [String : AnyObject] = ["id": id as AnyObject]
+        print(parameters)
+        
+        post("1.1/favorites/create.json", parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+
+            success(true)
+            
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
 }

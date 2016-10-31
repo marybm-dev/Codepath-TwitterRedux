@@ -37,15 +37,15 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func onReplyButton(_ sender: AnyObject) {
-    
+        print("reply button")
     }
     
     @IBAction func onRetweetButton(_ sender: AnyObject) {
-    
+        print("retweet button")
     }
     
     @IBAction func onFavoriteButton(_ sender: AnyObject) {
-    
+        print("favorite button")
     }
     
 }

@@ -161,6 +161,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favoritesCountLabel" destination="6oG-Pj-B1i" id="0EW-53-JbV"/>
+                                            <outlet property="likeButton" destination="0Ro-am-0vP" id="kSN-6h-XfK"/>
+                                            <outlet property="replyButton" destination="Mol-mv-eeG" id="ao8-0Q-Kyx"/>
+                                            <outlet property="retweetButton" destination="U6m-GH-xMj" id="EnR-Jt-I12"/>
                                             <outlet property="retweetCountLabel" destination="ojY-rn-fP2" id="rDJ-NF-AOl"/>
                                             <outlet property="timestampLabel" destination="CHe-vt-c1v" id="DSQ-Yj-j8J"/>
                                             <outlet property="tweetTextLabel" destination="wzy-xA-EjB" id="ipg-0d-Zaq"/>
