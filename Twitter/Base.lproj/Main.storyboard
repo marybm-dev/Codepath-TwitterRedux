@@ -63,7 +63,7 @@
                                             <frame key="frameInset" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yta-Cu-1gU">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yta-Cu-1gU">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="YHa-oO-H5R"/>
                                                         <constraint firstAttribute="height" constant="70" id="y1J-xk-2xL"/>
@@ -145,7 +145,7 @@
                                                 <constraint firstItem="U6m-GH-xMj" firstAttribute="top" secondItem="wzy-xA-EjB" secondAttribute="bottom" constant="8" symbolic="YES" id="ZRm-A9-rws"/>
                                                 <constraint firstItem="6oG-Pj-B1i" firstAttribute="leading" secondItem="0Ro-am-0vP" secondAttribute="trailing" constant="4" id="Znx-lD-c3H"/>
                                                 <constraint firstItem="p56-2a-Hgn" firstAttribute="leading" secondItem="CLm-Os-Tg3" secondAttribute="leading" constant="67" id="buE-tu-IIe"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wzy-xA-EjB" secondAttribute="trailing" constant="10" id="idk-x8-V7v"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wzy-xA-EjB" secondAttribute="trailing" id="idk-x8-V7v"/>
                                                 <constraint firstItem="ojY-rn-fP2" firstAttribute="leading" secondItem="U6m-GH-xMj" secondAttribute="trailing" constant="3" id="jNY-kq-4RD"/>
                                                 <constraint firstItem="Wpu-6z-r9N" firstAttribute="leading" secondItem="gJc-4O-Aas" secondAttribute="trailing" constant="13" id="lUN-yN-9Tv"/>
                                                 <constraint firstItem="CHe-vt-c1v" firstAttribute="baseline" secondItem="Wpu-6z-r9N" secondAttribute="baseline" id="lUU-ik-3wm"/>
@@ -158,7 +158,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="likeCountLabel" destination="6oG-Pj-B1i" id="D3d-2Q-vki"/>
+                                            <outlet property="favoritesCountLabel" destination="6oG-Pj-B1i" id="0EW-53-JbV"/>
                                             <outlet property="retweetCountLabel" destination="ojY-rn-fP2" id="rDJ-NF-AOl"/>
                                             <outlet property="retweetNameLabel" destination="Ibp-f3-odT" id="u7t-Y7-Yl0"/>
                                             <outlet property="timestampLabel" destination="CHe-vt-c1v" id="DSQ-Yj-j8J"/>

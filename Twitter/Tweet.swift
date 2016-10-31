@@ -15,6 +15,8 @@ class Tweet: NSObject {
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
     
+    var user: User?
+    
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
         
@@ -25,6 +27,10 @@ class Tweet: NSObject {
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
             timestamp = formatter.date(from: timestampString)
+        }
+        
+        if let userData = dictionary["user"] as? NSDictionary {
+            user = User(dictionary: userData)
         }
     }
     
@@ -38,5 +44,13 @@ class Tweet: NSObject {
         }
         
         return tweets
+    }
+    
+    func display(date: Date) -> String {
+        
+        let resultFormatter = DateFormatter()
+        resultFormatter.dateFormat = "MM/dd/yy"
+
+        return resultFormatter.string(from: date)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tweets = [Tweet]()
     
@@ -21,14 +21,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
             self.tweets = tweets
             self.tableView.reloadData()
             
+            for tweet in tweets {
+                print(tweet.text!)
+            }
+            
         }, failure: { (error: Error) in
             print(error.localizedDescription)
         })
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 150
     }
 
     @IBAction func onLogoutButton(_ sender: AnyObject) {
@@ -42,7 +44,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
  
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweets.count > 0 ? tweets.count : 0
+        return tweets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,5 +54,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         cell.tweet = tweet
         
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 }

@@ -91,6 +91,7 @@
 				5E2C0BF01DC7B55A007C052C /* Twitter.entitlements */,
 				5EA1A1A91DC524FC00E33029 /* API */,
 				5EA1A1A41DC51EB400E33029 /* View Controllers */,
+				5E2C0BF11DC7C117007C052C /* Cells */,
 				5EA1A1A31DC51EAF00E33029 /* Models */,
 				5E38B3CB1DC3DE8E00E18A5A /* AppDelegate.swift */,
 				5E38B3CF1DC3DE8E00E18A5A /* Main.storyboard */,
@@ -113,7 +114,6 @@
 		5EA1A1A41DC51EB400E33029 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5E2C0BF11DC7C117007C052C /* Cells */,
 				5EA1A1AC1DC52D3D00E33029 /* TweetsViewController.swift */,
 				5E9CE6A31DC3E23100A96173 /* LoginViewController.swift */,
 			);

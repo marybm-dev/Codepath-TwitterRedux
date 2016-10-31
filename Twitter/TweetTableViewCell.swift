@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import AFNetworking
 
 class TweetTableViewCell: UITableViewCell {
 
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text!
+            timestampLabel.text = tweet.display(date: tweet.timestamp!)
+            retweetCountLabel.text = "\(tweet.retweetCount)"
+            favoritesCountLabel.text = "\(tweet.favoritesCount)"
+            
+            userImageView.setImageWith((tweet.user?.profileURL)!)
+            userNameLabel.text = tweet.user?.name
+            userHandleLabel.text = "@\((tweet.user?.screenname)!)"
         }
     }
     
@@ -25,7 +33,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     
     @IBOutlet weak var retweetCountLabel: UILabel!
-    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var favoritesCountLabel: UILabel!
     
     
     @IBAction func onReplyButton(_ sender: AnyObject) {
@@ -42,7 +50,9 @@ class TweetTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        userImageView.layer.cornerRadius = 3
+        userImageView.clipsToBounds = true
     }
 
 }
