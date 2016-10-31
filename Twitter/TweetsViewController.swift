@@ -11,23 +11,18 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tweets = [Tweet]()
+    let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
-            self.tweets = tweets
-            self.tableView.reloadData()
-            
-            for tweet in tweets {
-                print(tweet.text!)
-            }
-            
-        }, failure: { (error: Error) in
-            print(error.localizedDescription)
-        })
+        // init refresh control
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        self.fetchData(shouldRefresh: false)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
@@ -35,6 +30,22 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBAction func onLogoutButton(_ sender: AnyObject) {
         TwitterClient.sharedInstance?.logout()
+    }
+    
+    // Mark: - App Logic
+    func fetchData(shouldRefresh: Bool) {
+        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
+        })
+        
+        // if refreshing, stop
+        if shouldRefresh {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     // MARK: - Navigation
@@ -59,5 +70,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    // Mark: - Refresh control
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        self.fetchData(shouldRefresh: true)
     }
 }
