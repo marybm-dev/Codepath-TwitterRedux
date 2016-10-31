@@ -23,6 +23,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         deauthorize()
         fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterdemo://oath"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
             
+            print("I got a request token")
+            
             guard let token = requestToken else {
                 return
             }
@@ -40,14 +42,18 @@ class TwitterClient: BDBOAuth1SessionManager {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken: BDBOAuth1Credential?) in
             
-            self.currentAccount(success: { (user: User) in
-                User.currentUser = user
-                self.loginSuccess?()
+                print("I got an access token")
                 
+                self.currentAccount(success: { (user: User) in
+                    User.currentUser = user
+                    self.loginSuccess?()
+                    
+                    print("User logged in")
+                    
                 }, failure: { (error: Error) in
                     print("error: \(error.localizedDescription)")
                     self.loginFailure?(error)
-            })
+                })
             
             }, failure: { (error: Error?) in
                 print("error: \(error?.localizedDescription)")
@@ -62,6 +68,8 @@ class TwitterClient: BDBOAuth1SessionManager {
             let dictionaries = response as! [NSDictionary]
             let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
             
+            print("I got tweets")
+            
             success(tweets)
             
             }, failure: { (task: URLSessionDataTask?, error: Error) in
@@ -75,6 +83,8 @@ class TwitterClient: BDBOAuth1SessionManager {
 
             let userDictionary = response as! NSDictionary
             let user = User(dictionary: userDictionary)
+            
+            print("I got a user")
             
             success(user)
             
