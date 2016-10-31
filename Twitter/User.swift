@@ -10,6 +10,8 @@ import UIKit
 
 class User: NSObject {
 
+    static let didLogoutNotification = NSNotification.Name(rawValue: "UserDidLogout")
+    
     var name: String?
     var screenname: String?
     var profileURL: URL?

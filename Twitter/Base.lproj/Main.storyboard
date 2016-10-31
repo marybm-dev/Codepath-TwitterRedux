@@ -74,7 +74,13 @@
                             <constraint firstAttribute="trailing" secondItem="7rT-NS-Swg" secondAttribute="trailing" id="ysz-ld-Jxt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0sh-5v-9O0"/>
+                    <navigationItem key="navigationItem" id="0sh-5v-9O0">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="VpT-vL-Z8J">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="KmD-3I-dXs" id="Nlo-DZ-7aP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4S-xp-YMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
