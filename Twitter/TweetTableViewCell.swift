@@ -24,6 +24,9 @@ class TweetTableViewCell: UITableViewCell {
         }
     }
     
+    var retweeted = false
+    var liked = false
+    
     @IBOutlet weak var retweetNameLabel: UILabel!
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -45,40 +48,56 @@ class TweetTableViewCell: UITableViewCell {
     }
     
     @IBAction func onRetweetButton(_ sender: AnyObject) {
-        print("tweet button id: \(tweet.id)")
 
-        // post via Twitter API - POST
-        TwitterClient.sharedInstance?.retweetTweet(id: tweet.id, success: {_ in
-            
-            // update count label
+        if !retweeted {
             self.tweet.retweetCount += 1
             self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
-            
-            // update image
             self.retweetButton.setImage(UIImage(named: "retweetFilled"), for: .normal)
             
-        }) { (error: Error) in
-            print("error: \(error.localizedDescription)")
+            retweeted = true
         }
+        
+        
+        // post via Twitter API - POST
+//        TwitterClient.sharedInstance?.retweetTweet(id: tweet.id, success: {_ in
+//            
+//            // update count label
+//            self.tweet.retweetCount += 1
+//            self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+//            
+//            
+//            
+//        }) { (error: Error) in
+//            print("error: \(error.localizedDescription)")
+//        }
         
     }
     
     @IBAction func onLikeButton(_ sender: AnyObject) {
-        print("like button")
 
-        // post via Twitter API - POST
-        TwitterClient.sharedInstance?.favoriteTweet(id: tweet.id, success: {_ in
-            
-            // update count label
+        if !liked {
             self.tweet.favoritesCount += 1
             self.favoritesCountLabel.text = "\(self.tweet.favoritesCount)"
-            
-            // update image
             self.likeButton.setImage(UIImage(named: "likeFilled"), for: .normal)
             
-        }) { (error: Error) in
-            print("error: \(error.localizedDescription)")
+            liked = true
         }
+        
+        
+        
+//        // post via Twitter API - POST
+//        TwitterClient.sharedInstance?.favoriteTweet(id: tweet.id, success: {_ in
+//            
+//            // update count label
+//            self.tweet.favoritesCount += 1
+//            self.favoritesCountLabel.text = "\(self.tweet.favoritesCount)"
+//            
+//            // update image
+//            
+//            
+//        }) { (error: Error) in
+//            print("error: \(error.localizedDescription)")
+//        }
         
     }
     
