@@ -57,6 +57,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
             tweetDetailVC.tweet = tweet
         }
+        else if segue.identifier == "CreateTweet" {
+            let navigationController = segue.destination as! UINavigationController
+            let tweetCreateVC = navigationController.topViewController as! TweetCreateViewController
+            
+            tweetCreateVC.user = User.currentUser
+        }
         
     }
  
