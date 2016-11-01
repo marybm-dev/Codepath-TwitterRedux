@@ -41,13 +41,26 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     
     @IBAction func onReplyButton(_ sender: AnyObject) {
-
+        print("reply button")
     }
     
     @IBAction func onRetweetButton(_ sender: AnyObject) {
         print("tweet button id: \(tweet.id)")
 
-        self.retweetButton.setImage(UIImage(named: "retweetFilled"), for: .normal)
+        // post via Twitter API - POST
+        TwitterClient.sharedInstance?.retweetTweet(id: tweet.id, success: {_ in
+            
+            // update count label
+            self.tweet.retweetCount += 1
+            self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+            
+            // update image
+            self.retweetButton.setImage(UIImage(named: "retweetFilled"), for: .normal)
+            
+        }) { (error: Error) in
+            print("error: \(error.localizedDescription)")
+        }
+        
     }
     
     @IBAction func onLikeButton(_ sender: AnyObject) {
