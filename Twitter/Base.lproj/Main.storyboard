@@ -363,6 +363,8 @@
                     </view>
                     <connections>
                         <outlet property="favoritesCountLabel" destination="TEB-n5-EJG" id="Gqc-jR-0Su"/>
+                        <outlet property="likeButton" destination="h07-jh-cAy" id="MjI-nh-xfu"/>
+                        <outlet property="retweetButton" destination="J7l-dG-bIj" id="1qN-40-uki"/>
                         <outlet property="retweetCountLabel" destination="ijM-lh-zV1" id="Pfi-cH-uWo"/>
                         <outlet property="timestampLabel" destination="qg6-Uo-9p1" id="l6u-6e-Ckc"/>
                         <outlet property="tweetTextLabel" destination="Rtz-S5-zMz" id="P7p-PN-D3b"/>

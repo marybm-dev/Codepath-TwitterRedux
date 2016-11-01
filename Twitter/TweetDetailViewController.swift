@@ -17,7 +17,13 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favoritesCountLabel: UILabel!
 
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    
     var tweet: Tweet!
+    var retweeted = false
+    var liked = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +47,23 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func onRetweetButton(_ sender: AnyObject) {
-        print("retweet button")
+        if !retweeted {
+            self.tweet.retweetCount += 1
+            self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+            self.retweetButton.setImage(UIImage(named: "retweetFilled"), for: .normal)
+            
+            retweeted = true
+        }
     }
     
     @IBAction func onFavoriteButton(_ sender: AnyObject) {
-        print("favorite button")
+        if !liked {
+            self.tweet.favoritesCount += 1
+            self.favoritesCountLabel.text = "\(self.tweet.favoritesCount)"
+            self.likeButton.setImage(UIImage(named: "likeFilled"), for: .normal)
+            
+            liked = true
+        }
     }
     
 }
