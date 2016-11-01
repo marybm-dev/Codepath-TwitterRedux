@@ -20,7 +20,6 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     
-    
     var tweet: Tweet!
     var retweeted = false
     var liked = false

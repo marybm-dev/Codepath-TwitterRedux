@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCreateViewControllerDelegate {
 
     var tweets = [Tweet]()
     let refreshControl = UIRefreshControl()
@@ -48,6 +48,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    // Mark: - TweetCreateViewControllerDelegate
+    func didCreateTweet(tweet: Tweet) {
+        tweets.insert(tweet, at: 0)
+        tableView.reloadData()
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -62,6 +68,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let tweetCreateVC = navigationController.topViewController as! TweetCreateViewController
             
             tweetCreateVC.user = User.currentUser
+            tweetCreateVC.delegate = self
         }
         
     }

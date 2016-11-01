@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol TweetCreateViewControllerDelegate {
+    @objc optional func didCreateTweet(tweet: Tweet)
+}
+
 class TweetCreateViewController: UIViewController {
 
     @IBAction func onCancelButton(_ sender: AnyObject) {
@@ -15,14 +19,29 @@ class TweetCreateViewController: UIViewController {
     }
 
     @IBAction func onTweetButton(_ sender: AnyObject) {
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+        
+        let tweetDictionary: NSDictionary = [
+            "id"   : Int(arc4random()),
+            "user" : user.dictionary,
+            "text" : tweetTextView.text,
+            "created_at" : formatter.string(from: date)
+        ]
+        
+        let tweet = Tweet(dictionary: tweetDictionary)
+        
+        delegate?.didCreateTweet!(tweet: tweet)
         dismiss(animated: true, completion: nil)
         
-        TwitterClient.sharedInstance?.createTweet(status: tweetTextView.text, success: {
-            print("\n\nYay!!\n\n")
-            
-        }, failure: { (error) in
-            print(error)
-        })
+//        TwitterClient.sharedInstance?.createTweet(status: tweetTextView.text, success: {
+//            print("\n\nYay!!\n\n")
+//            
+//        }, failure: { (error) in
+//            print(error)
+//        })
     }
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -30,6 +49,7 @@ class TweetCreateViewController: UIViewController {
     @IBOutlet weak var userHandleLabel: UILabel!
     @IBOutlet weak var tweetTextView: UITextView!
     
+    weak var delegate: TweetCreateViewControllerDelegate?
     var user: User!
     
     override func viewDidLoad() {
