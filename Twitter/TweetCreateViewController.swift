@@ -30,18 +30,19 @@ class TweetCreateViewController: UIViewController {
             "text" : tweetTextView.text,
             "created_at" : formatter.string(from: date)
         ]
-        
         let tweet = Tweet(dictionary: tweetDictionary)
         
-        delegate?.didCreateTweet!(tweet: tweet)
-        dismiss(animated: true, completion: nil)
+        // TODO: update the POST function to return the Tweet object
+        TwitterClient.sharedInstance?.createTweet(status: tweetTextView.text, success: {
+            print("\n\nYay!!\n\n")
+            
+            self.delegate?.didCreateTweet!(tweet: tweet)
+            
+            }, failure: { (error) in
+                print(error)
+        })
         
-//        TwitterClient.sharedInstance?.createTweet(status: tweetTextView.text, success: {
-//            print("\n\nYay!!\n\n")
-//            
-//        }, failure: { (error) in
-//            print(error)
-//        })
+        dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet weak var userImageView: UIImageView!

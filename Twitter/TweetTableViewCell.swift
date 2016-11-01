@@ -50,54 +50,42 @@ class TweetTableViewCell: UITableViewCell {
     @IBAction func onRetweetButton(_ sender: AnyObject) {
 
         if !retweeted {
-            self.tweet.retweetCount += 1
-            self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
-            self.retweetButton.setImage(UIImage(named: "retweetFilled"), for: .normal)
-            
-            retweeted = true
+            // post via Twitter API - POST
+            TwitterClient.sharedInstance?.retweetTweet(id: tweet.id, success: {_ in
+                
+                // update count label
+                self.tweet.retweetCount += 1
+                self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
+                
+                // update image
+                self.retweetButton.setImage(UIImage(named: "retweetFilled"), for: .normal)
+                self.retweeted = true
+                
+            }) { (error: Error) in
+                print("error: \(error.localizedDescription)")
+            }
         }
-        
-        
-        // post via Twitter API - POST
-//        TwitterClient.sharedInstance?.retweetTweet(id: tweet.id, success: {_ in
-//            
-//            // update count label
-//            self.tweet.retweetCount += 1
-//            self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
-//            
-//            
-//            
-//        }) { (error: Error) in
-//            print("error: \(error.localizedDescription)")
-//        }
-        
     }
     
     @IBAction func onLikeButton(_ sender: AnyObject) {
 
         if !liked {
-            self.tweet.favoritesCount += 1
-            self.favoritesCountLabel.text = "\(self.tweet.favoritesCount)"
-            self.likeButton.setImage(UIImage(named: "likeFilled"), for: .normal)
+            // post via Twitter API - POST
+            TwitterClient.sharedInstance?.favoriteTweet(id: tweet.id, success: {_ in
+                
+                // update count label
+                self.tweet.favoritesCount += 1
+                self.favoritesCountLabel.text = "\(self.tweet.favoritesCount)"
+                
+                // update image
+                self.likeButton.setImage(UIImage(named: "likeFilled"), for: .normal)
+                self.liked = true
+                
+            }) { (error: Error) in
+                print("error: \(error.localizedDescription)")
+            }
             
-            liked = true
         }
-        
-        
-        
-//        // post via Twitter API - POST
-//        TwitterClient.sharedInstance?.favoriteTweet(id: tweet.id, success: {_ in
-//            
-//            // update count label
-//            self.tweet.favoritesCount += 1
-//            self.favoritesCountLabel.text = "\(self.tweet.favoritesCount)"
-//            
-//            // update image
-//            
-//            
-//        }) { (error: Error) in
-//            print("error: \(error.localizedDescription)")
-//        }
         
     }
     

@@ -125,6 +125,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    // TODO: update the POST function to return the Tweet object
     func createTweet(status: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
         let params: [String : AnyObject] = ["status": status as AnyObject]
