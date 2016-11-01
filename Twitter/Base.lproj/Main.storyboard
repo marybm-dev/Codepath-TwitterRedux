@@ -438,6 +438,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tweetTextView" destination="3iG-ab-gt2" id="Myy-po-tvP"/>
                         <outlet property="userHandleLabel" destination="b2a-jg-0aF" id="FVc-ph-nIo"/>
                         <outlet property="userImageView" destination="Fas-iE-B88" id="IUa-tD-xTt"/>
                         <outlet property="userNameLabel" destination="bTD-Jz-RNm" id="XUI-Ya-I3W"/>

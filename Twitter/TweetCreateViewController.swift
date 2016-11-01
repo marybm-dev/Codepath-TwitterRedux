@@ -17,12 +17,18 @@ class TweetCreateViewController: UIViewController {
     @IBAction func onTweetButton(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
         
-        
+        TwitterClient.sharedInstance?.createTweet(status: tweetTextView.text, success: {
+            print("\n\nYay!!\n\n")
+            
+        }, failure: { (error) in
+            print(error)
+        })
     }
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userHandleLabel: UILabel!
+    @IBOutlet weak var tweetTextView: UITextView!
     
     var user: User!
     
@@ -31,7 +37,7 @@ class TweetCreateViewController: UIViewController {
 
         userImageView.setImageWith(user.profileURL!)
         userNameLabel.text = user.name!
-        userHandleLabel.text = user.screenname!
+        userHandleLabel.text = "@\(user.screenname!)"
         
         userImageView.layer.cornerRadius = 3
         userImageView.clipsToBounds = true

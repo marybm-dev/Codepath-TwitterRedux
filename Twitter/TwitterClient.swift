@@ -11,7 +11,11 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
     
-    static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "NtI8Fez6H7V5dcWSULW7GXAMs", consumerSecret: "eroAV8Ro6Z2e1xQl4af4Cs2x1HsHIRZbho89aIwxe5dwZ0NU01")
+    static let twitterBaseURL = URL(string: "https://api.twitter.com")
+    static let consumerKey = "NtI8Fez6H7V5dcWSULW7GXAMs"
+    static let consumerSecret = "eroAV8Ro6Z2e1xQl4af4Cs2x1HsHIRZbho89aIwxe5dwZ0NU01"
+    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: consumerKey, consumerSecret: consumerSecret)
+    
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error) -> ())?
@@ -54,7 +58,6 @@ class TwitterClient: BDBOAuth1SessionManager {
                 self.currentAccount(success: { (user: User) in
                     User.currentUser = user
                     self.loginSuccess?()
-                    
                     print("User logged in")
                     
                 }, failure: { (error: Error) in
@@ -71,12 +74,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
         
         get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task :URLSessionDataTask, response: Any?) in
-            
             let dictionaries = response as! [NSDictionary]
             let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
             
             print("\nI got tweets \nCount:\(tweets.count)\n")
-            
             success(tweets)
             
             }, failure: { (task: URLSessionDataTask?, error: Error) in
@@ -87,12 +88,9 @@ class TwitterClient: BDBOAuth1SessionManager {
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
-
             let userDictionary = response as! NSDictionary
             let user = User(dictionary: userDictionary)
-            
-            print("I got a user")
-            
+
             success(user)
             
         }, failure: { (task: URLSessionTask?, error: Error) in
@@ -102,11 +100,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func favoriteTweet(id: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
-        let parameters: [String : AnyObject] = ["id": id as AnyObject]
-        print(parameters)
+        let params: [String : AnyObject] = ["id": id as AnyObject]
+        print(params)
         
-        post("1.1/favorites/create.json", parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
-
+        post("1.1/favorites/create.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             success()
             
         }, failure: { (task: URLSessionDataTask?, error: Error) in
@@ -117,14 +114,26 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func retweetTweet(id: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
 
-        let parameters: [String : AnyObject] = ["id": id as AnyObject]
+        let params: [String : AnyObject] = ["id": id as AnyObject]
         
-        post("1.1/statuses/retweet/\(id).json", parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        post("1.1/statuses/retweet/\(id).json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             success()
             
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             print(error)
-                
+            failure(error)
+        })
+    }
+    
+    func createTweet(status: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        
+        let params: [String : AnyObject] = ["status": status as AnyObject]
+        
+        post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+    
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print(error)
             failure(error)
         })
     }
