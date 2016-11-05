@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4888A0941DCD7807004D4454 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888A0931DCD7807004D4454 /* HamburgerViewController.swift */; };
 		5E2C0BF31DC7C135007C052C /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C0BF21DC7C135007C052C /* TweetTableViewCell.swift */; };
 		5E38B3CC1DC3DE8E00E18A5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B3CB1DC3DE8E00E18A5A /* AppDelegate.swift */; };
 		5E38B3D11DC3DE8E00E18A5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E38B3CF1DC3DE8E00E18A5A /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		34A5EA0AAC6E5B3E000BF9B7 /* Pods-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.release.xcconfig"; sourceTree = "<group>"; };
+		4888A0931DCD7807004D4454 /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
 		5E2C0BF01DC7B55A007C052C /* Twitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Twitter.entitlements; sourceTree = "<group>"; };
 		5E2C0BF21DC7C135007C052C /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		5E38B3C81DC3DE8E00E18A5A /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 				5E3CB0581DC7EB3800C02EA0 /* TweetDetailViewController.swift */,
 				5E3CB05A1DC813A800C02EA0 /* TweetCreateViewController.swift */,
 				5E9CE6A31DC3E23100A96173 /* LoginViewController.swift */,
+				4888A0931DCD7807004D4454 /* HamburgerViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				5E3CB05B1DC813A800C02EA0 /* TweetCreateViewController.swift in Sources */,
 				5E3CB0591DC7EB3800C02EA0 /* TweetDetailViewController.swift in Sources */,
 				5E38B3CC1DC3DE8E00E18A5A /* AppDelegate.swift in Sources */,
+				4888A0941DCD7807004D4454 /* HamburgerViewController.swift in Sources */,
 				5E2C0BF31DC7C135007C052C /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

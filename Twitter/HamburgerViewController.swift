@@ -1,0 +1,50 @@
+//
+//  HamburgerViewController.swift
+//  Twitter
+//
+//  Created by Mary Martinez on 11/4/16.
+//  Copyright © 2016 codepath. All rights reserved.
+//
+
+import UIKit
+
+class HamburgerViewController: UIViewController {
+
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    
+    @IBOutlet weak var leftMarginConstraint: NSLayoutConstraint!
+    var originalLeftMargin: CGFloat!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+    
+    @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        let velocity = sender.velocity(in: view)
+        
+        switch sender.state {
+        case .began:
+            originalLeftMargin = leftMarginConstraint.constant
+            
+        case .changed:
+            leftMarginConstraint.constant = originalLeftMargin + translation.x
+            
+        case .ended:
+            UIView.animate(withDuration: 0.3, animations: {
+                if velocity.x > 0 { // opening
+                    self.leftMarginConstraint.constant = self.view.frame.size.width - 50
+                } else {            // closing
+                    self.leftMarginConstraint.constant = 0
+                }
+                self.view.layoutIfNeeded()
+            })
+            
+        default:
+            print("default")
+            
+        }
+    }
+}
