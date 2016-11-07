@@ -165,12 +165,68 @@
                     <view key="view" contentMode="scaleToFill" id="qFF-Cr-HQ4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.46837376845964596" blue="0.51834577383369074" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ndd-NI-saa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.58823054850000001" green="0.75313899029999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="75" id="fjD-jc-PK3" customClass="MenuTableViewCell" customModule="Twitter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fjD-jc-PK3" id="ibU-K1-NXu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JWE-oD-AII">
+                                                    <rect key="frame" x="8" y="14.5" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="6h7-4Q-aMM"/>
+                                                        <constraint firstAttribute="width" constant="45" id="kIS-cX-F2q"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIq-ME-G7F">
+                                                    <rect key="frame" x="61" y="20.5" width="65.5" height="33.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.58823054850000001" green="0.75313899029999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="JWE-oD-AII" firstAttribute="leading" secondItem="ibU-K1-NXu" secondAttribute="leading" constant="8" id="1ra-JG-ya7"/>
+                                                <constraint firstItem="eIq-ME-G7F" firstAttribute="centerY" secondItem="JWE-oD-AII" secondAttribute="centerY" id="CeQ-z0-IxJ"/>
+                                                <constraint firstItem="JWE-oD-AII" firstAttribute="centerY" secondItem="ibU-K1-NXu" secondAttribute="centerY" id="KBH-lW-lKv"/>
+                                                <constraint firstItem="eIq-ME-G7F" firstAttribute="leading" secondItem="JWE-oD-AII" secondAttribute="trailing" constant="8" id="L5M-7L-Xy4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="menuIconImageView" destination="JWE-oD-AII" id="i6w-j8-j8C"/>
+                                            <outlet property="menuItemLabel" destination="eIq-ME-G7F" id="GwO-9F-sNQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1UT-iE-o6W" id="yIn-an-1CK"/>
+                                    <outlet property="delegate" destination="1UT-iE-o6W" id="8bH-SG-xtc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.58823054845211709" green="0.75313899026879216" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ndd-NI-saa" firstAttribute="top" secondItem="qFF-Cr-HQ4" secondAttribute="top" id="BnS-F8-ic9"/>
+                            <constraint firstItem="aCg-Pg-3Uz" firstAttribute="top" secondItem="ndd-NI-saa" secondAttribute="bottom" id="VIY-Oc-7zt"/>
+                            <constraint firstItem="ndd-NI-saa" firstAttribute="leading" secondItem="qFF-Cr-HQ4" secondAttribute="leading" id="qfZ-Ao-pWF"/>
+                            <constraint firstAttribute="trailing" secondItem="ndd-NI-saa" secondAttribute="trailing" id="rpI-Qf-xcO"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ndd-NI-saa" id="Ctn-ci-yob"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M73-z2-YyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="958"/>
+            <point key="canvasLocation" x="984.79999999999995" y="957.57121439280365"/>
         </scene>
         <!--Tweets View Controller-->
         <scene sceneID="AUU-qW-GKo">
@@ -189,10 +245,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="151" id="9k4-T6-6xG" customClass="TweetTableViewCell" customModule="Twitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="151"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="151"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9k4-T6-6xG" id="CLm-Os-Tg3">
-                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="150.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yta-Cu-1gU">
@@ -461,10 +517,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jm3-q1-JRB">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jm3-q1-JRB" id="FR3-fo-Me7">
-                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
