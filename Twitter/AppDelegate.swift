@@ -14,18 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    public func loginSucces() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let hamburgerVC = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController
+        let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        
+        menuVC.hamburgerViewController = hamburgerVC
+        hamburgerVC.menuViewController = menuVC
+        
+        window?.rootViewController = hamburgerVC
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
         if User.currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let hamburgerVC = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController
-            let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-            
-            menuVC.hamburgerViewController = hamburgerVC
-            hamburgerVC.menuViewController = menuVC
-            
-            window?.rootViewController = hamburgerVC
+            loginSucces()
         }
         
         NotificationCenter.default.addObserver(forName: User.didLogoutNotification, object: nil, queue: OperationQueue.main) { (notification: Notification) in
