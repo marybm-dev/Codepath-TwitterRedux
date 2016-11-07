@@ -44,6 +44,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         icons.append(homeIcon!)
         icons.append(mentions!)
         
+        tableView.separatorColor = UIColor.white
         
         tableView.reloadData()
     }
@@ -63,8 +64,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        print("\(indexPath.row): \(titles[indexPath.row]) - \(viewControllers[indexPath.row])")
         
         hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }
