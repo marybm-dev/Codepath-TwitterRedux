@@ -24,5 +24,4 @@ This is an iOS application leveraging the Twitter API to display Tweets.
 * [ ] Include a plus button to Add an Account
 * [ ] Swipe to delete an account
 
-![Video Walkthrough](Twitter.gif)
-
+![Video Walkthrough](TwitterRedux.gif)
