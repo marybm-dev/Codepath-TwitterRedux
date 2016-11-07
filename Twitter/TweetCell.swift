@@ -13,6 +13,8 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text!
+            tweetTextLabel.sizeToFit()
+            
             timestampLabel.text = tweet.display(date: tweet.timestamp!)
             retweetCountLabel.text = "\(tweet.retweetCount)"
             favoritesCountLabel.text = "\(tweet.favoritesCount)"
