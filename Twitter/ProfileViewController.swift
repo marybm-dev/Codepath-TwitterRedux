@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.fetchData()
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 150
+        tableView.estimatedRowHeight = 135
     }
     
     // Mark: - App Logic
@@ -73,7 +73,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if indexPath.section == 0 {
             return 200
         } else {
-            return 150
+            return 135
         }
     }
 }

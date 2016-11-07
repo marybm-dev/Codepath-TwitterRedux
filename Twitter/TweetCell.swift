@@ -13,7 +13,6 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text!
-            tweetTextLabel.sizeToFit()
             
             timestampLabel.text = tweet.display(date: tweet.timestamp!)
             retweetCountLabel.text = "\(tweet.retweetCount)"
@@ -45,6 +44,10 @@ class TweetCell: UITableViewCell {
         
         userImageView.layer.cornerRadius = 3
         userImageView.clipsToBounds = true
+        
+        tweetTextLabel.sizeToFit()
+        self.contentView.setNeedsLayout()
+        self.contentView.layoutIfNeeded()
     }
     
 }

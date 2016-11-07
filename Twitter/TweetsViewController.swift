@@ -25,7 +25,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.fetchData(shouldRefresh: false)
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 150
+        tableView.estimatedRowHeight = 135
     }
 
     @IBAction func onLogoutButton(_ sender: AnyObject) {
@@ -90,7 +90,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 135
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

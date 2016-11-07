@@ -33,7 +33,9 @@ class User: NSObject {
         
         let profileURLString = dictionary["profile_image_url_https"] as? String
         if let profileURLString = profileURLString {
-            profileURL = URL(string: profileURLString)
+            let biggerProfileURLString = profileURLString.replacingOccurrences(of: "normal", with: "bigger")
+            
+            profileURL = URL(string: biggerProfileURLString)
         }
         
         tagline = dictionary["description"] as? String

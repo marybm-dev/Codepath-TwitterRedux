@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MentionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MentionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,12 +20,10 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         let nib = UINib(nibName: "TweetCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "TweetCellNib")
         
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         self.fetchData()
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 150
+        tableView.estimatedRowHeight = 135
     }
 
     // Mark: - App Logic
@@ -51,6 +49,6 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 135
     }
 }
