@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // Mark: - App Logic
     func fetchData() {
-        TwitterClient.sharedInstance?.userTimeline(success: { (tweets: [Tweet]) in
+        TwitterClient.sharedInstance?.userTimeline(screenName: (self.user?.screenname)!, success: { (tweets: [Tweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
             
