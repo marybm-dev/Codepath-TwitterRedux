@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
     
-    var user = User.currentUser
+    var user: User!
     var tweets = [Tweet]()
     
     override func viewDidLoad() {
