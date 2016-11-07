@@ -83,6 +83,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         let tweet = tweets[indexPath.row]
         cell.tweet = tweet
+        cell.parentViewController = self
         
         return cell
     }

@@ -27,6 +27,8 @@ class TweetTableViewCell: UITableViewCell {
     var retweeted = false
     var liked = false
     
+    weak var parentViewController: TweetsViewController!
+    
     @IBOutlet weak var retweetNameLabel: UILabel!
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -89,11 +91,27 @@ class TweetTableViewCell: UITableViewCell {
         
     }
     
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         userImageView.layer.cornerRadius = 3
         userImageView.clipsToBounds = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(img:)))
+        userImageView.isUserInteractionEnabled = true
+        userImageView.addGestureRecognizer(tapGestureRecognizer)
     }
-
+    
+    func imageTapped(img: AnyObject) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
+            
+        let profileViewController = profileNavigationController.childViewControllers[0] as! ProfileViewController
+        profileViewController.user = tweet.user!
+        
+        parentViewController.navigationController?.pushViewController(profileViewController, animated: true)
+    }
 }

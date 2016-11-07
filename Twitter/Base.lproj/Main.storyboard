@@ -259,10 +259,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="2606.4467766116945"/>
         </scene>
-        <!--View Controller-->
+        <!--Mentions View Controller-->
         <scene sceneID="PPE-Kd-jEQ">
             <objects>
-                <viewController id="aTl-nj-ntH" sceneMemberID="viewController">
+                <viewController id="aTl-nj-ntH" customClass="MentionsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dW7-5C-9Is"/>
                         <viewControllerLayoutGuide type="bottom" id="ZP9-SE-TNM"/>
@@ -270,13 +270,36 @@
                     <view key="view" contentMode="scaleToFill" id="x22-Dh-7fV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ta4-Ab-iP5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="aTl-nj-ntH" id="wFz-Cn-csj"/>
+                                    <outlet property="delegate" destination="aTl-nj-ntH" id="Zaw-AF-B5N"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ta4-Ab-iP5" firstAttribute="leading" secondItem="x22-Dh-7fV" secondAttribute="leading" id="Al5-qQ-5yK"/>
+                            <constraint firstItem="ta4-Ab-iP5" firstAttribute="leading" secondItem="x22-Dh-7fV" secondAttribute="leading" id="CwH-U4-hQL"/>
+                            <constraint firstItem="ta4-Ab-iP5" firstAttribute="top" secondItem="x22-Dh-7fV" secondAttribute="top" id="Ftc-sm-dak"/>
+                            <constraint firstItem="ZP9-SE-TNM" firstAttribute="top" secondItem="ta4-Ab-iP5" secondAttribute="bottom" id="G5D-kF-QSu"/>
+                            <constraint firstItem="ta4-Ab-iP5" firstAttribute="top" secondItem="x22-Dh-7fV" secondAttribute="top" id="M07-BJ-taL"/>
+                            <constraint firstAttribute="trailing" secondItem="ta4-Ab-iP5" secondAttribute="trailing" id="VSs-4d-0qv"/>
+                            <constraint firstAttribute="trailing" secondItem="ta4-Ab-iP5" secondAttribute="trailing" id="tbk-bm-0RD"/>
+                            <constraint firstItem="ZP9-SE-TNM" firstAttribute="top" secondItem="ta4-Ab-iP5" secondAttribute="bottom" id="vhg-Sv-d9A"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="y79-ru-q7f"/>
+                    <connections>
+                        <outlet property="tableView" destination="ta4-Ab-iP5" id="qNs-6M-znq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="raB-C7-0KQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="985" y="2608"/>
+            <point key="canvasLocation" x="984.79999999999995" y="2607.3463268365817"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="h5d-0t-zqd">

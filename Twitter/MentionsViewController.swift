@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  MentionsViewController.swift
 //  Twitter
 //
 //  Created by Mary Martinez on 11/6/16.
@@ -8,11 +8,10 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MentionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var user: User!
     var tweets = [Tweet]()
     
     override func viewDidLoad() {
@@ -21,15 +20,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         let nib = UINib(nibName: "TweetCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "TweetCellNib")
         
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         self.fetchData()
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
     }
-    
+
     // Mark: - App Logic
     func fetchData() {
-        TwitterClient.sharedInstance?.userTimeline(success: { (tweets: [Tweet]) in
+        TwitterClient.sharedInstance?.mentionsTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
             
@@ -38,42 +39,18 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == 0 {
-            return 1
-        } else {
-            return tweets.count
-        }
+        return tweets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCellNib", for: indexPath) as! TweetCell
         
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UserHeaderCell", for: indexPath) as! UserHeaderTableViewCell
-            
-            cell.user = self.user
-            return cell
-            
-            
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCellNib", for: indexPath) as! TweetCell
-            
-            cell.tweet = self.tweets[indexPath.row]
-            return cell
-        }
+        cell.tweet = self.tweets[indexPath.row]
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath.section == 0 {
-            return 200
-        } else {
-            return 150
-        }
+        return 150
     }
 }
